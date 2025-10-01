@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Library</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <header class="page-header">
+    <h1>Movie Library</h1>
+    <p>Search, add, and remove movies</p>
+  </header>
+
+  {% if message %}
+  <div class="card section" style="border-color:#86efac;">
+    <p>{{ message }}</p>
+  </div>
+  {% endif %}
+
+  {% if error %}
+  <div class="card section" style="border-color:#fca5a5;">
+    <p>{{ error }}</p>
+  </div>
+  {% endif %}
+
+  <div class="card section">
+    <h2>Add a new movie</h2>
+    <form action="{{ url_for('add_movie') }}" method="post">
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" placeholder="e.g. Interstellar" required>
+
+      <label for="director">Director</label>
+      <input id="director" name="director" type="text" placeholder="e.g. Christopher Nolan" required>
+
+      <label for="year">Year</label>
+      <input id="year" name="year" type="text" placeholder="e.g. 2014" required>
+
+      <button type="submit">Add Movie</button>
+    </form>
+  </div>
+
+  <div class="card section">
+    <h2>Search movies</h2>
+    <form action="{{ url_for('movies_home') }}" method="get">
+      <label for="q">Title or Director</label>
+      <input id="q" name="q" type="text" value="{{ query or '' }}" placeholder="e.g. Nolan">
+      <button type="submit">Search</button>
+      {% if query %}
+      <a class="btn" href="{{ url_for('movies_home') }}" style="margin-left:8px;">Clear</a>
+      {% endif %}
+    </form>
+  </div>
+
+  <div class="card section">
+    <h2>{% if query %}Search results{% else %}All movies{% endif %}</h2>
+    {% if movies and movies|length > 0 %}
+      <ul>
+        {% for title, director, year, number in movies %}
+          <li>
+            [{{ number }}] {{ title }} ({{ year }}) - Director: {{ director }}
+            <form action="{{ url_for('remove_movie') }}" method="post" style="display:inline-block; margin-left:12px;">
+              <input type="hidden" name="index" value="{{ number }}">
+              <button type="submit">Remove</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No movies found.</p>
+    {% endif %}
+  </div>
+
+  <a class="back-link" href="{{ url_for('movies_home') }}">Home</a>
+</div>
+</body>
+</html>
+
+

@@ -1,6 +1,6 @@
 Star Wars,George Lucas,1977
 Vanilla Sky,Cameron Crowe,2001
 The Mission,Rolan Joffe,1986
-Bridget Jones Diary,Sharron McGuire,2001
 Interstellar,Christopher Nolan,2013
 Oppenheimer,Christopher Nolan,2022
+Superman,James Gunn,2025

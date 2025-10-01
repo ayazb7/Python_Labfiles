@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MovieDatabase</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <header class="page-header">
+                <h1>Movie<span class="red-text">Database</span></h1>
+            </header>
+            
+            <div class="page-content">
+                <div class="card section">
+                    <h2 style="margin: 0 0 16px 0;">All Movies</h2>
+                    {% if movies %}
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #5D5D5D;">
+                                <th style="text-align: left; padding: 12px; color: #ffffff;">ID</th>
+                                <th style="text-align: left; padding: 12px; color: #ffffff;">Title</th>
+                                <th style="text-align: left; padding: 12px; color: #ffffff;">Director</th>
+                                <th style="text-align: left; padding: 12px; color: #ffffff;">Year</th>
+                                <th style="text-align: left; padding: 12px; color: #ffffff;">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody id="movies-tbody">
+                            {% for movie in movies %}
+                            <tr style="border-bottom: 1px solid #333333;">
+                                <td style="padding: 12px; color: #ffffff;">{{ movie.id }}</td>
+                                <td style="padding: 12px; color: #ffffff;">{{ movie.title }}</td>
+                                <td style="padding: 12px; color: #ffffff;">{{ movie.director }}</td>
+                                <td style="padding: 12px; color: #ffffff;">{{ movie.year }}</td>
+                                <td>
+                                    <form action="{{ url_for('remove_movie', index=movie.id) }}" method="post" style="display: inline;">
+                                        <button style="background: #dc2626; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Remove</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p style="color: #ffffff; text-align: center; padding: 32px;">No movies found. Add some movies to get started!</p>
+                    {% endif %}
+                </div>
+
+                <div class="card section">
+                    <h2 style="margin: 0 0 16px 0;">Search for a movie</h2>
+                    <form action="{{ url_for('search_movie') }}" method="get" class="form-group">
+                        <input id="query" name="query" type="text" value="{{ search_query or '' }}" placeholder="e.g. Interstellar" required>
+                        <button type="submit">Search</button>
+                    </form>
+                    <div style="margin-top: 12px;">
+                        {% include 'search_results.html' %}
+                    </div>
+                </div>
+
+                <div class="card section">
+                    <h2 style="margin: 0 0 16px 0;">Add a new movie</h2>
+                    <form id="add-movie-form" action="{{ url_for('add_movie') }}" method="post" class="form-group">
+                        <label for="title">Title</label>
+                        <input id="title" name="title" type="text" placeholder="e.g. Interstellar" required>
+                        <label for="director">Director</label>
+                        <input id="director" name="director" type="text" placeholder="e.g. Christopher Nolan" required>
+                        <label for="year">Year</label>
+                        <input id="year" name="year" type="text" placeholder="e.g. 2014" required>
+                        <button type="submit">Add Movie</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

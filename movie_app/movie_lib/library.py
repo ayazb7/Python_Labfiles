@@ -22,6 +22,10 @@ class MovieLibrary:
             for movie in self.movies:
                 f.write(movie.to_file_string() + "\n")
 
+    def get_movies(self):
+        self._load_movies()
+        return self.movies
+    
     def add_movie(self, title, director, year):
         new_movie = Movie(title, director, year)
         self.movies.append(new_movie)
@@ -29,6 +33,7 @@ class MovieLibrary:
         print(f"Successfully added and saved '{title}'.")
 
     def remove_movie_by_index(self, index):
+        print(f"Removing movie at index {index}, which is {self.movies[index]}")
         if 0 <= index < len(self.movies):
             removed_movie = self.movies.pop(index)
             self._save_movies()

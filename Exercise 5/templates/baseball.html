@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baseball</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+<header class="page-header">
+  <h1>Baseball</h1>
+  <p>America's pastime</p>
+</header>
+<div class="card section">
+  <p>The goal of the game is to score more points
+    (runs) than the other team. <br>The players
+    on the team at bat attempt to score runs by
+    touching all four bases,
+    in order, set at the corners of the
+    square-shaped baseball diamond.</p>
+  <h2>
+      Brilliant Baseball Facts
+  </h2>
+  <ul>
+      <li>The First MLB Team Was the Cincinnati
+        Red Stockings. ...</li>
+      <li>Jackie Robinson Was the First Black
+        Major League Player. ...</li>
+      <li>Two Players Played in the MLB for
+        27 Seasons. ...</li>
+      <li>Edwin Jackson Played For the Most
+        MLB Teams. ...</li>
+      <li>John William Lindsey Spent the Most
+        Time in the Minors.</li>
+  </ul>
+  <h3>Ooo your favourite team is {{fav}} !!</h3>
+</div>
+<a class="back-link" href="/">Back to Home</a>
+</div>
+</body>
+</html>
