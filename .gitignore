@@ -2,3 +2,5 @@
 *.user
 Exercises.sln
 Exercises.pyproj
+.DS_Store
+__pycache__/
