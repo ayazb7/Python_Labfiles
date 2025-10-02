@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<div class="page-content">
+    <section class="card section">
+        <h2 class="card-title">{{ title }}</h2>
+
+        <div class="form">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="row">
+                    <div class="col-sm">{{form.username.label}}</div>
+                    <div class="col-sm">{{form.username}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">{{form.password.label}}</div>
+                    <div class="col-sm">{{form.password}}</div>
+                </div>
+
+                {{form.submit}}
+            </form>
+            <hr>
+                <div id="message">
+            {{message}}
+                    </div>
+                </form>
+        </div>
+    </section>
+</div>
+{% endblock %}

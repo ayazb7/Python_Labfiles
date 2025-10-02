@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MovieDatabase</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <header class="page-header">
+                <h1>Movie<span class="red-text">Database</span></h1>
+                
+                <div class="header-buttons">
+                    {% if logged_in %}
+                    <!-- <div class="user-text">
+                        <p>User: {{ username }}</p>
+                    </div> -->
+                    <a class="btn" href="/logout">Logout</a>
+                    {% else %}
+                    <a class="btn" href="/register">Register</a>
+                    <a class="btn" href="/login">Login</a>
+                    {% endif %}
+                </div>
+            </header>
+            
+            {% block body_content %}
+            {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
